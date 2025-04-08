@@ -1,4 +1,4 @@
-import { Box, Table, Th, Tr, Td, Thead, Tbody } from "@chakra-ui/react";
+import { Box, Table, Thead, Tr, Th, Td, Tbody } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { fetchAppointments } from "../api";
 
@@ -6,7 +6,7 @@ export default function Dashboard() {
   const [appointments, setAppointments] = useState<any[]>([]);
 
   useEffect(() => {
-    fetchAppointments().then(res => setAppointments(res.data));
+    fetchAppointments().then((res: any) => setAppointments(res.data));
   }, []);
 
   return (
@@ -24,11 +24,11 @@ export default function Dashboard() {
         <Tbody>
           {appointments.map((a, i) => (
             <Tr key={i}>
-              <Td>{a.name}</Td>
-              <Td>{a.email}</Td>
-              <Td>{a.carModel}</Td>
-              <Td>{a.plateNumber}</Td>
-              <Td>{a.serviceDate}</Td>
+              <Td>{a.contactDetails?.name}</Td>
+              <Td>{a.contactDetails?.email}</Td>
+              <Td>{a.carDetails?.model}</Td>
+              <Td>{a.carDetails?.plateNumber}</Td>
+              <Td>{a.date}</Td>
             </Tr>
           ))}
         </Tbody>
